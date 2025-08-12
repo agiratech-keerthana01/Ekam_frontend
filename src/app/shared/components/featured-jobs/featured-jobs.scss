@@ -1,0 +1,129 @@
+.featured-jobs-section {
+  margin-top: 48px;
+  padding: 32px 0;
+
+  .featured-jobs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .job-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .job-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #5c6bc0;
+  }
+
+  .job-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .job-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    background-color: #eee;
+    border-radius: 50%;
+
+    img {
+      height: 2rem;
+    }
+  }
+
+  .job-details {
+    flex-grow: 1;
+    margin-left: 1rem;
+  }
+
+  .job-description {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .job-meta {
+    display: flex;
+    gap: 1rem;
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      font-size: 0.875rem;
+      color: #666;
+      mat-icon {
+        font-size: 1rem;
+        margin-right: 0.25rem;
+      }
+    }
+  }
+}
+
+.featured-employers-section {
+  text-align: center;
+  margin-top: 3rem;
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .employers-list {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .employer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .employer-logo {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+    }
+
+    span {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    .find-jobs-section, .video-stats-section {
+      min-width: unset;
+    }
+  }
+  .job-list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="featured-jobs-section">
+  <div class="featured-jobs-header">
+    <h2 class="section-title">Featured jobs</h2>
+    <button mat-flat-button color="primary" class="view-all-button">
+      View all jobs
+    </button>
+  </div>
+  <div class="job-list">
+    <div *ngFor="let job of featuredJobs" class="job-card">
+      <div class="job-header">
+        <div class="job-logo">
+          <img [src]="job.logo" [alt]="job.company">
+        </div>
+        <div class="job-details">
+          <h3>{{ job.title }}</h3>
+          <p>{{ job.company }}</p>
+        </div>
+        <mat-icon class="favorite-icon">favorite_border</mat-icon>
+      </div>
+      <p class="job-description">
+        Candidate's responsibilities include implementation and deployment, Security Management.
+      </p>
+      <div class="job-meta">
+        <span class="meta-item">
+          <mat-icon>location_on</mat-icon> {{ job.location }}
+        </span>
+        <span class="meta-item">
+          <mat-icon>people</mat-icon> {{ job.applicants }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-employers-section">
+    <h3 class="section-title">Featured Employers</h3>
+    <div class="employers-list">
+      <div *ngFor="let employer of featuredEmployers" class="employer-card">
+        <img [src]="employer.logo" [alt]="employer.name" class="employer-logo">
+        <span>{{ employer.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>

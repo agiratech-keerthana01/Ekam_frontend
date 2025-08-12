@@ -1,0 +1,61 @@
+<section class="hero-section">
+  <div class="find-jobs-section">
+    <div class="search-form">
+      <div class="search-inputs">
+        <div class="search-field-container">
+          <img src="assets/Ic_Job category.png" alt="Job Category icon" />
+          <input type="text" placeholder="All Category" class="search-field" />
+          <img src="assets/Ic_chevron-down.png" alt="drop down icon" />
+        </div>
+        <div class="search-field-container">
+          <img src="assets/Ic_Location.png" alt="Location icon" />
+          <input type="text" placeholder="Location" class="search-field" />
+          <img src="assets/Ic_chevron-down.png" alt="drop down icon" />
+        </div>
+      </div>
+
+      <div class="search-field-container1">
+        <img src="assets/Ic_Search.png" alt="Search icon" />
+        <input
+          type="text"
+          placeholder="Skills, Designation, or Companies"
+          class="search-field1"
+          style="width: 100%"
+        />
+      </div>
+      <button class="find-jobs-button">Find Jobs</button>
+    </div>
+  </div>
+
+    <div class="video-stats-section">
+      <div class="video-container">
+        <img
+          src="https://placehold.co/800x450/d0e8ff/333333?text=Video+Placeholder"
+          alt="Video placeholder"
+        />
+        <div class="play-icon"><img src="assets/Ic_Play.png" alt="play icon"></div>
+      </div>
+      <div class="stats-container">
+        <div>
+          <div class="stat-value text-blue-300">50K+</div>
+          <div class="text-gray-600">Jobs Listed</div>
+        </div>
+        <div>
+          <div class="stat-value text-orange-500">10K+</div>
+          <div class="text-gray-600">Candidates</div>
+        </div>
+        <div>
+          <div class="stat-value text-green-600">5K+</div>
+          <div class="text-gray-600">Hired</div>
+        </div>
+      </div>
+    </div>
+</section>
+<div class="trusted-companies-section">
+    <h2>Trusted by 2000+ Companies</h2>
+    <div class="company-logos">
+      <div *ngFor="let company of trustedCompanies" class="logo-item">
+        <img [src]="company.logo" [alt]="company.name" />
+      </div>
+    </div>
+  </div>

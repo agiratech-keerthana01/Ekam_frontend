@@ -1,0 +1,145 @@
+<div class="register-container">
+  <!-- Left side -->
+  <div class="info-section">
+    <h2>Land your favourite job</h2>
+    <p>Register to Ekam in just 2 minutes</p>
+
+    <div class="info-item">
+      <div class="icon-circle">
+        <mat-icon>assignment</mat-icon>
+      </div>
+      <div>
+        <h3>Profile creation & resume upload</h3>
+        <p>
+          Create your profile and upload your resume to connect with top
+          employers
+        </p>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="icon-circle">
+        <mat-icon>search</mat-icon>
+      </div>
+      <div>
+        <h3>Find & apply for job</h3>
+        <p>
+          Search and apply for jobs that match your skills and experience in the
+          forces
+        </p>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="icon-circle">
+        <mat-icon>work</mat-icon>
+      </div>
+      <div>
+        <h3>Get placed</h3>
+        <p>
+          Secure your career with companies that value your expertise and
+          discipline
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="form-section">
+    <h2>Register as a candidate</h2>
+    <div class="social-login">
+      <img src="assets/google.png" alt="Google" />
+      <img src="assets/linkedin.png" alt="LinkedIn" />
+    </div>
+
+    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email ID</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mobile Number</mat-label>
+          <input
+            id="phone"
+            matInput
+            formControlName="mobileNumber"
+            type="tel"
+            placeholder="Enter mobile number"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Service</mat-label>
+          <mat-select formControlName="service">
+            <mat-option value="Army">Army</mat-option>
+            <mat-option value="Navy">Navy</mat-option>
+            <mat-option value="Air Force">Air Force</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Service status</mat-label>
+          <mat-select formControlName="serviceStatus">
+            <mat-option value="Retired">Retired</mat-option>
+            <mat-option value="Serving">Serving</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Rank</mat-label>
+          <mat-select formControlName="rank">
+            <mat-option value="Brigadier">Brigadier</mat-option>
+            <mat-option value="Colonel">Colonel</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Branch</mat-label>
+          <mat-select formControlName="branch">
+            <mat-option value="Mechanized infantry"
+              >Mechanized infantry</mat-option
+            >
+            <mat-option value="Artillery">Artillery</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-checkbox formControlName="hasCorporateExperience">
+        I have corporate work experience
+      </mat-checkbox>
+
+      <mat-checkbox formControlName="subscribeToNewsletter">
+        Subscribe to newsletter to stay updated
+      </mat-checkbox>
+
+      <p class="terms">
+        By proceeding, I agree to the <a href="#">terms & conditions</a> and
+        <a href="#">privacy policy</a> of Ekam.
+      </p>
+
+      <button mat-flat-button color="accent" type="submit" class="submit-btn">
+        Get OTP
+      </button>
+
+      <p class="login-link">Already have an account? <a href="#">Login</a></p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div>
+  <!-- Top, White Navbar (Primary) -->
+  <mat-toolbar class="primary-navbar">
+    <div class="logo-container">
+      <img src="/assets/images/logo.png" alt="EKAM logo" class="logo-img">
+    </div>
+
+    <span class="toolbar-spacer"></span>
+
+    <div class="actions">
+      <!-- Candidate Login/Register Button -->
+      <button mat-button class="nav-button">Candidate</button>
+      <button mat-button class="nav-button login-button" (click)="navigateTo('candidate-register')" >Login | Register</button>
+
+      <!-- Employer Login/Post a job Button -->
+      <button mat-button class="nav-button">Employer</button>
+      <button mat-button class="nav-button post-job-button"  (click)="navigateTo('employer-register')" >Post a job</button>
+    </div>
+  </mat-toolbar>
+
+  <!-- Bottom, Darker Navbar (Secondary) -->
+  <mat-toolbar class="secondary-navbar">
+    <nav class="secondary-nav-links">
+      <a mat-button class="secondary-link">Home</a>
+
+      <!-- Candidate Dropdown -->
+      <button mat-button class="secondary-link" [matMenuTriggerFor]="candidateMenu">Candidate   <img class="menu-icon" [src]="mainButtonIcon" alt="icon" /></button>
+      <mat-menu #candidateMenu="matMenu">
+        <button mat-menu-item *ngFor="let link of candidateLinks">
+           <img class="menu-icon" [src]="link.icon" alt="{{link.name}} icon" style="margin-top: 12px;" />
+          {{ link.name }}
+        </button>
+      </mat-menu>
+
+      <!-- Employer Dropdown -->
+      <button mat-button class="secondary-link" [matMenuTriggerFor]="employerMenu">Employer  <img class="menu-icon" [src]="mainButtonIcon" alt="icon" /></button>
+      <mat-menu #employerMenu="matMenu">
+        <button mat-menu-item *ngFor="let link of employerLinks" >
+           <img class="menu-icon" [src]="link.icon" alt="{{link.name}} icon" />
+          <mat-icon>{{ link.icon }}</mat-icon>
+          {{ link.name }}
+        </button>
+      </mat-menu>
+
+      <a mat-button class="secondary-link">Contact us</a>
+    </nav>
+  </mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>
+
+
+<!-- (click)="navigateToLoginPage()"  add this in the 29 and 38t line when you want to  -->
