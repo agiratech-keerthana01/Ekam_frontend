@@ -35,9 +35,13 @@ export class navbar {
   }
 
 
-  navigateTo(path: string){
+  navigateToDropDown(path: string){
     this.router.navigate([`/${path}`]);
   }
+
+  navigateTo(role: 'candidate' | 'employer', mode: 'login' | 'register') {
+  this.router.navigate([`/${role}/${mode}`]);
+}
 
   adminLoginPage(): void {
     this.router.navigate(['/AdminLogin']);

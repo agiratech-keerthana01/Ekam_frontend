@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Enter OTP</h2>
+
+<mat-dialog-content>
+  <p>
+    Please enter the 6-digit OTP sent to <strong>{{ data.email }}</strong>
+    <mat-icon style="cursor:pointer; font-size: 16px;" (click)="editEmail()">edit</mat-icon>
+  </p>
+
+  <div class="otp-inputs">
+    <input #otpInput
+           type="text"
+           maxlength="1"
+           *ngFor="let digit of otpDigits; let i = index; trackBy: trackByIndex"
+           [(ngModel)]="otpDigits[i]"
+           (input)="onOtpInput(i, $event)">
+  </div>
+  <div class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+  <div class="resend-section">
+    Didn’t receive code?
+    <a (click)="resendOtp()" *ngIf="countdown === 0">Resend OTP</a>
+    <p *ngIf="countdown > 0">Resend OTP in {{ countdown }}s</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-stroked-button color="primary" (click)="verifyOtp()">Verify OTP</button>
+  <button mat-button mat-dialog-close>Back</button>
+</mat-dialog-actions>
