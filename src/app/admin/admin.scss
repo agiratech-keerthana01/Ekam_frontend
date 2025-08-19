@@ -1,0 +1,38 @@
+.main-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.primary-navbar {
+  background-color: #fff;
+  color: #333;
+  height: 70px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+}
+
+ .logo-container {
+    padding: 0 16px;
+  }
+
+  .logo-img {
+    width: 101px;
+    height: 40px;
+  }
+
+  .nav-button {
+    border: 2px solid #FF7E00; /* Orange accent color */
+    background-color: #fff;
+      color: #1a1515;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #FF7E00; /* Darker shade on hover */
+      }
+  }

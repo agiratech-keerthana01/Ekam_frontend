@@ -1,47 +1,39 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import intlTelInput from 'intl-tel-input';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatOption, MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { OtpDialog } from '../otp-dialog/otp-dialog';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { OtpDialog } from '../otp-dialog/otp-dialog';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-register-candidate',
-  standalone: true,
-  imports: [
-    CommonModule,
+  selector: 'app-register-employer',
+  imports: [CommonModule, 
     ReactiveFormsModule,
     FormsModule,
+    MatFormFieldModule, 
     MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
     MatSlideToggleModule,
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatInputModule
   ],
-  templateUrl: './register-candidate.html',
-  styleUrl: './register-candidate.scss',
+  templateUrl: './register-employer.html',
+  styleUrl: './register-employer.scss'
 })
-export class RegisterCandidate {
-  candidateForm!: FormGroup;
+export class RegisterEmployer {
+
+  employerForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +43,7 @@ export class RegisterCandidate {
   ) {}
 
   ngOnInit(): void {
-    this.candidateForm = this.fb.group({
+    this.employerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -65,7 +57,7 @@ export class RegisterCandidate {
   }
   
   getOtp() {
-    const emailValue = this.candidateForm.get('email')?.value;
+    const emailValue = this.employerForm.get('email')?.value;
 
     if (!emailValue) {
       this.snackBar.open(
@@ -80,7 +72,7 @@ export class RegisterCandidate {
     }
 
     //Call backend to send OTP
-    this.auth.registerCandidate({ email: emailValue }).subscribe({
+    this.auth.registerEmployer({ email: emailValue }).subscribe({
       next: () => {
         console.log('OTP sent to:', emailValue);
 
@@ -100,26 +92,26 @@ export class RegisterCandidate {
             };
 
             // Verify OTP
-            // this.auth.otpVerify(payload).subscribe({
-            //   next: (res) => {
-            //     console.log('OTP verification successful:', res);
-            //     this.snackBar.open(
-            //       'OTP verified successfully! Now set your password.',
-            //       'Close',
-            //       {
-            //         duration: 3000,
-            //         panelClass: ['snackbar-success'],
-            //       }
-            //     );
-            //   },
-            //   error: (err) => {
-            //     console.error('OTP verification failed:', err);
-            //     this.snackBar.open('Invalid or expired OTP.', 'Close', {
-            //       duration: 3000,
-            //       panelClass: ['snackbar-error'],
-            //     });
-            //   },
-            // });
+            this.auth.otpVerify(payload).subscribe({
+              next: (res) => {
+                console.log('OTP verification successful:', res);
+                this.snackBar.open(
+                  'OTP verified successfully! Now set your password.',
+                  'Close',
+                  {
+                    duration: 3000,
+                    panelClass: ['snackbar-success'],
+                  }
+                );
+              },
+              error: (err) => {
+                console.error('OTP verification failed:', err);
+                this.snackBar.open('Invalid or expired OTP.', 'Close', {
+                  duration: 3000,
+                  panelClass: ['snackbar-error'],
+                });
+              },
+            });
           }
         });
       },
@@ -134,8 +126,9 @@ export class RegisterCandidate {
   }
 
   onSubmit(): void {
-    if (this.candidateForm.valid) {
-      console.log('Form submitted!', this.candidateForm.value);
+    if (this.employerForm.valid) {
+      console.log('Form submitted!', this.employerForm.value);
     }
   }
+
 }

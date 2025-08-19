@@ -10,11 +10,22 @@
     <div class="actions">
       <!-- Candidate Login/Register Button -->
       <button mat-button class="nav-button">Candidate</button>
-      <button mat-button class="nav-button login-button" (click)="navigateTo('candidate-register')" >Login | Register</button>
+      <button mat-button class="nav-button login-button" 
+        (click)="navigateTo('candidate', 'register')">Login | Register</button>
+<!-- <button mat-button class="nav-button login-button" 
+        (click)="navigateTo('candidate', 'login')">Login</button>
+<button mat-button class="nav-button register-button" 
+        (click)="navigateTo('candidate', 'register')">Register</button> -->
 
       <!-- Employer Login/Post a job Button -->
       <button mat-button class="nav-button">Employer</button>
-      <button mat-button class="nav-button post-job-button"  (click)="navigateTo('employer-register')" >Post a job</button>
+      <button mat-button class="nav-button post-job-button"  
+        (click)="navigateTo('employer', 'register')">Post a job</button>
+<!-- <button mat-button class="nav-button login-button" 
+        (click)="navigateTo('employer', 'login')">Login</button>
+<button mat-button class="nav-button post-job-button"  
+        (click)="navigateTo('employer', 'register')">Post a job</button> -->
+
     </div>
   </mat-toolbar>
 
@@ -26,16 +37,16 @@
       <!-- Candidate Dropdown -->
       <button mat-button class="secondary-link" [matMenuTriggerFor]="candidateMenu">Candidate   <img class="menu-icon" [src]="mainButtonIcon" alt="icon" /></button>
       <mat-menu #candidateMenu="matMenu">
-        <button mat-menu-item *ngFor="let link of candidateLinks">
+        <button mat-menu-item *ngFor="let link of candidateLinks" (click)="navigateToDropDown(link.path)">
            <img class="menu-icon" [src]="link.icon" alt="{{link.name}} icon" style="margin-top: 12px;" />
           {{ link.name }}
         </button>
       </mat-menu>
 
       <!-- Employer Dropdown -->
-      <button mat-button class="secondary-link" [matMenuTriggerFor]="employerMenu">Employer  <img class="menu-icon" [src]="mainButtonIcon" alt="icon" /></button>
+      <button mat-button class="secondary-link" [matMenuTriggerFor]="employerMenu">Employer  <img class="menu-icon" [src]="mainButtonIcon" alt="icon"/></button>
       <mat-menu #employerMenu="matMenu">
-        <button mat-menu-item *ngFor="let link of employerLinks" >
+        <button mat-menu-item *ngFor="let link of employerLinks" (click)="navigateToDropDown(link.path)">
            <img class="menu-icon" [src]="link.icon" alt="{{link.name}} icon" />
           <mat-icon>{{ link.icon }}</mat-icon>
           {{ link.name }}

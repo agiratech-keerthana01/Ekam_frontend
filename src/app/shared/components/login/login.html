@@ -1,0 +1,249 @@
+<div class="register-container">
+  <!-- Left Info -->
+  <div class="info-section">
+    <h2 *ngIf="mode === 'register' && role === 'candidate'">
+      Land your favourite job
+    </h2>
+    <h2 *ngIf="mode === 'register' && role === 'employer'">
+      Empower Your Mission
+    </h2>
+    <h2 *ngIf="mode === 'login'">Welcome Back</h2>
+
+    <p *ngIf="mode === 'register' && role === 'candidate'">
+      Register as Candidate
+    </p>
+    <p *ngIf="mode === 'register' && role === 'employer'">
+      Register as Employer
+    </p>
+    <p *ngIf="mode === 'login'">Login to continue</p>
+
+    <!-- Candidate extra info -->
+    <ng-container *ngIf="mode === 'register' && role === 'candidate'">
+      <div class="info-item">
+        <div class="icon-circle"><mat-icon>assignment</mat-icon></div>
+        <div>
+          <h3>Profile creation & resume upload</h3>
+          <p>
+            Create your profile and upload your resume to connect with top
+            employers
+          </p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="icon-circle"><mat-icon>search</mat-icon></div>
+        <div>
+          <h3>Find & apply for jobs</h3>
+          <p>
+            Search and apply for jobs that match your skills and experience in
+            the forces
+          </p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="icon-circle"><mat-icon>work</mat-icon></div>
+        <div>
+          <h3>Get placed</h3>
+          <p>
+            Secure your career with companies that value your expertise and
+            discipline
+          </p>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Employer info -->
+    <ng-container *ngIf="mode === 'register' && role === 'employer'">
+      <div class="info-item">
+        <div class="icon-circle"><mat-icon>business</mat-icon></div>
+        <div>
+          <h3>Post jobs & hire</h3>
+          <p>Post jobs and hire the best candidates from forces</p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Right Form -->
+  <div class="form-section">
+    <h2>{{ mode | titlecase }} as a {{ role }}</h2>
+
+    <!-- Candidate Register -->
+    <form
+      *ngIf="mode === 'register' && role === 'candidate'"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstname" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastname" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email ID</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="mobileNumber" type="tel" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Service</mat-label>
+          <mat-select formControlName="service">
+            <mat-option *ngFor="let s of services" [value]="s.service">
+              {{ s.service }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Service status</mat-label>
+          <mat-select formControlName="serviceStatus">
+            <mat-option *ngFor="let s of serviceStatuses" [value]="s.status">
+              {{ s.status }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Rank</mat-label>
+          <mat-select formControlName="ranking">
+            <mat-option *ngFor="let r of rankings" [value]="r.ranking">
+              {{ r.ranking }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Branch</mat-label>
+          <mat-select formControlName="branch">
+            <mat-option *ngFor="let b of branches" [value]="b.branch">
+              {{ b.branch }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-checkbox formControlName="hasCorporateExperience">
+        I have corporate work experience
+      </mat-checkbox>
+
+      <button
+        mat-flat-button
+        color="accent"
+        type="submit"
+        class="submit-btn"
+        (click)="getOtp()"
+      >
+        Get OTP
+      </button>
+
+      <p class="login-link">
+        Already have an account?
+        <a [routerLink]="['/', role, 'login']">Login</a>
+      </p>
+    </form>
+
+    <!-- Employer Register -->
+    <form
+      *ngIf="mode === 'register' && role === 'employer'"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstname" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastname" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Organization Name</mat-label>
+          <input matInput formControlName="companyName" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="mobileNumber" type="tel" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Organization Email ID</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Organization Size</mat-label>
+          <mat-select formControlName="organizationSize">
+            <mat-option value="50">50</mat-option>
+            <mat-option value="Navy">100</mat-option>
+            <mat-option value="Air Force">250</mat-option>
+            <mat-option value="Air Force">1000</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="accent" type="submit" class="submit-btn" (click)="getOtp()">
+        Register
+      </button>
+
+      <p class="login-link">
+        Already have an account?
+        <a [routerLink]="['/', role, 'login']">Login</a>
+      </p>
+    </form>
+
+    <!-- Login (same for candidate & employer) -->
+    <form
+      *ngIf="mode === 'login'"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="forgot-pass"><a href="#">Forgot Password?</a></div>
+
+      <button mat-flat-button color="accent" type="submit" class="submit-btn">
+        Login
+      </button>
+
+      <p class="login-link">
+        New to Ekam? <a [routerLink]="['/', role, 'register']">Register</a>
+      </p>
+    </form>
+  </div>
+</div>

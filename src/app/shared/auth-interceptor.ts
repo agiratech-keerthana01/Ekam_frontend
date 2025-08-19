@@ -6,7 +6,7 @@ import { catchError, EMPTY, throwError } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const router = inject(Router);
   const snackBar = inject(MatSnackBar);
 
@@ -30,7 +30,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           duration: 3000,
           verticalPosition: 'bottom',
         });
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         router.navigate(['/login']);
         return EMPTY;
       } else if (error.status === 401) {

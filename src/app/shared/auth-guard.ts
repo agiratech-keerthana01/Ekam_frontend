@@ -1,15 +1,15 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { Auth } from './services/auth';
+import { AuthService } from './services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const authService = inject(Auth);
+  const authService = inject(AuthService);
   const jwtHelper = new JwtHelperService();
 
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   if (!token || jwtHelper.isTokenExpired(token)) {
     return router.parseUrl('/login');
@@ -26,3 +26,13 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   return true;
 };
+
+
+// { 
+//   path: 'admin', 
+//   loadChildren: () => import('./admin/admin-module').then(m => m.AdminModule), 
+//   canActivate: [authGuard],
+//   data: { roles: ['Admin'] }   // 👈 only Admin role can access
+// }
+
+//ACCESSED ONLY BY ADMIN (PATH)
