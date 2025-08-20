@@ -199,6 +199,7 @@ import { PasswordDialog } from '../password-dialog/password-dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -216,6 +217,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     RouterModule,
   ],
   templateUrl: './login.html',
@@ -298,8 +300,10 @@ export class Login {
     this.hide = !this.hide;
   }
 
+  isLoading = false;
+
   getOtp() {
-    console.log("In getOtp")
+    console.log('In getOtp');
     if (this.registerForm.invalid) {
       this.snackBar.open(
         'Please fill all required details before requesting OTP',
@@ -307,11 +311,13 @@ export class Login {
         {
           duration: 3000,
           panelClass: ['snackbar-error'],
-            verticalPosition: 'top',
+          verticalPosition: 'top',
         }
       );
       return;
     }
+
+    this.isLoading = true;
 
     const formValue = this.registerForm.value;
 
@@ -332,6 +338,7 @@ export class Login {
     if (this.role === 'candidate') {
       this.auth.registerCandidate(payload).subscribe({
         next: (response) => {
+          this.isLoading = false;
           if (response && response.userId) {
             //success only if userId exists
             this.snackBar.open(
@@ -350,23 +357,27 @@ export class Login {
             this.snackBar.open(
               response.message || 'Registration failed!',
               'Close',
-              { duration: 3000,
+              {
+                duration: 3000,
                 panelClass: ['snackbar-error'],
-            verticalPosition: 'top',
-               }
+                verticalPosition: 'top',
+              }
             );
           }
         },
-        error: () =>
+        error: () => {
+          this.isLoading = false;
           this.snackBar.open('Candidate registration failed!', 'Close', {
             duration: 3000,
             panelClass: ['snackbar-error'],
             verticalPosition: 'top',
-          }),
+          });
+        },
       });
     } else {
       this.auth.registerEmployer(payload).subscribe({
         next: (response) => {
+          this.isLoading = false; 
           if (response && response.userId) {
             //success only if userId exists
             this.snackBar.open(
@@ -393,13 +404,15 @@ export class Login {
             );
           }
         },
-        error: () =>
-          this.snackBar.open('Employer registration failed!', 'Close', {
-            duration: 3000,
-            panelClass: ['snackbar-error'],
-            verticalPosition: 'top',
-          }),
-      });
+        error: () => {
+        this.isLoading = false;
+        this.snackBar.open('Employer registration failed!', 'Close', {
+          duration: 3000,
+          panelClass: ['snackbar-error'],
+          verticalPosition: 'top',
+        });
+      },
+    });
     }
   }
 

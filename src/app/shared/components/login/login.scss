@@ -95,9 +95,14 @@
         mat-form-field {
           flex: 1;
           width: 100%;
-        }
-      }
 
+          .mat-mdc-input-element {
+          padding-left: 4px;
+        }
+
+        }
+
+      }
       mat-checkbox {
         display: block;
         margin-top: 10px;
@@ -140,6 +145,10 @@
       }
     }
   }
+}
+
+.form-row .mat-input-element {
+  padding-left: 4px;
 }
 
 .snackbar-success {

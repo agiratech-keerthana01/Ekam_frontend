@@ -1,0 +1,95 @@
+.main-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.primary-navbar {
+  background-color: #fff;
+  color: #333;
+  height: 70px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+}
+
+ .logo-container {
+    padding: 0 16px;
+  }
+
+  .logo-img {
+    width: 101px;
+    height: 40px;
+  }
+
+.snackbar-success {
+  background-color: #4caf50; // green
+  color: #fff;
+}
+
+.snackbar-error {
+  background-color: #f44336; // red
+  color: #fff;
+}
+
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* full screen height */
+  background: #f4f6f8; /* light background */
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  padding-top: 50px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.full-width-field {
+  width: 100%;
+}
+
+.forgot-pass {
+  text-align: right;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.forgot-pass a {
+  font-size: 0.9rem;
+  color: #3f51b5; /* Material primary shade */
+  text-decoration: none;
+}
+
+.forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  background-color: #FF7E00 !important;
+  border-radius: 8px;
+  text-transform: none;
+}
+
+.submit-btn:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}

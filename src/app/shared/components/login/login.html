@@ -144,7 +144,14 @@
         class="submit-btn"
         (click)="getOtp()"
       >
-        Get OTP
+        <mat-progress-spinner
+          *ngIf="isLoading"
+          diameter="20"
+          mode="indeterminate"
+          strokeWidth="3"
+        >
+        </mat-progress-spinner>
+        <span *ngIf="!isLoading">Get OTP</span>
       </button>
 
       <p class="login-link">
@@ -197,7 +204,13 @@
         </mat-form-field>
       </div>
 
-      <button mat-flat-button color="accent" type="submit" class="submit-btn" (click)="getOtp()">
+      <button
+        mat-flat-button
+        color="accent"
+        type="submit"
+        class="submit-btn"
+        (click)="getOtp()"
+      >
         Register
       </button>
 
