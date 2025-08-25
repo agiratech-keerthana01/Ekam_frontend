@@ -1,6 +1,40 @@
-.main-div {
+
+.sidenav-container {
     background-color: #2c3e50;
     color: #fff;
     flex-direction: column;
-    width: 260px;
+    height: 898px;
+    width: 280px;
+    gap: 1.5rem;
+    flex-grow: 1;
+}
+
+.sidenav-list {
+    list-style: none;
+    padding-top: 60px;
+    padding-left: 16px;
+    width: 280px;
+}
+
+.sidenav-list a {
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 16px;
+
+}
+
+.items-list {
+    text-align: left;
+    margin-top: 2px;
+    
+}
+
+.icon-list {
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+
+.items {
+    cursor: pointer;
 }

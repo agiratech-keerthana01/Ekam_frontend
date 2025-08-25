@@ -1,0 +1,58 @@
+<div class="form-section">
+    <div class="form-elements">
+    <h2>Add Plans</h2>
+
+    <form [formGroup]="addPlanForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Hires</mat-label>
+          <input matInput formControlName="maxHires" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Job Slots</mat-label>
+          <input
+            matInput
+            formControlName="jobSlots"
+            placeholder="Enter job slots"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>CV Views</mat-label>
+          <input matInput formControlName="cvViews" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Search results</mat-label>
+          <input
+            matInput
+            formControlName="searchResults"
+            type="tel"
+            placeholder="Enter search results"
+          />
+        </mat-form-field>
+      </div>
+
+
+
+      <button mat-flat-button color="accent" type="submit" class="submit-btn">
+        Add Plan
+      </button>
+    </form>
+    </div>
+  </div>

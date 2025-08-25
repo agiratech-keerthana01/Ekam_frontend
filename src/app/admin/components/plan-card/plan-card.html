@@ -1,0 +1,47 @@
+<mat-card class="plan-card">
+  <div class="plan-header">
+    <div class="active">
+    <h2 class="plan-title">{{ plan.name }}</h2>
+    <span class="status-badge" [ngClass]="plan.isActive ? 'active' : 'inactive'">
+      {{ plan.isActive ? 'Active' : 'Inactive' }}
+    </span>
+    </div>
+
+    <!-- Edit button -->
+    <button mat-icon-button class="edit-btn" (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+   
+  </div>
+
+  <div class="plan-price">
+    <span class="currency">₹</span>
+    <span class="amount">{{ plan.price | number }}</span>
+    <span class="duration">per year</span>
+  </div>
+
+  <p class="plan-description">
+    Lorem ipsum dolor sit amet, consectetur
+  </p>
+
+  <div class="plan-dates">
+    <div>
+      <small>Plan created on</small>
+      <p>{{ plan.createdAt | date:'short' }}</p>
+    </div>
+    <div>
+      <small>Last edited on</small>
+      <p>{{ plan.updatedAt | date:'short' }}</p>
+    </div>
+  </div>
+
+  <div class="plan-includes">
+    <h4>Includes:</h4>
+    <ul>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.maxHires }} hires/year</li>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.jobSlots }} job slots</li>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.searchResults }} search results</li>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.cvViews }} CV views</li>
+    </ul>
+  </div>
+</mat-card>

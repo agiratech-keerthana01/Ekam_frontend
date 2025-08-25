@@ -144,12 +144,19 @@
         class="submit-btn"
         (click)="getOtp()"
       >
-        Get OTP
+        <mat-progress-spinner
+          *ngIf="isLoading"
+          diameter="20"
+          mode="indeterminate"
+          strokeWidth="3"
+        >
+        </mat-progress-spinner>
+        <span *ngIf="!isLoading">Get OTP</span>
       </button>
 
       <p class="login-link">
         Already have an account?
-        <a [routerLink]="['/', role, 'login']">Login</a>
+        <a [routerLink]="['/auth', role, 'login']">Login</a>
       </p>
     </form>
 
@@ -197,13 +204,19 @@
         </mat-form-field>
       </div>
 
-      <button mat-flat-button color="accent" type="submit" class="submit-btn" (click)="getOtp()">
+      <button
+        mat-flat-button
+        color="accent"
+        type="submit"
+        class="submit-btn"
+        (click)="getOtp()"
+      >
         Register
       </button>
 
       <p class="login-link">
         Already have an account?
-        <a [routerLink]="['/', role, 'login']">Login</a>
+        <a [routerLink]="['/auth', role, 'login']">Login</a>
       </p>
     </form>
 
@@ -242,7 +255,7 @@
       </button>
 
       <p class="login-link">
-        New to Ekam? <a [routerLink]="['/', role, 'register']">Register</a>
+        New to Ekam? <a [routerLink]="['/auth', role, 'register']">Register</a>
       </p>
     </form>
   </div>
