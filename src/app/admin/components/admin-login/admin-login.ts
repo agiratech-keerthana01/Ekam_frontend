@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin-service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-admin-login',
   standalone: false,
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './admin-login.html',
+  styleUrl: './admin-login.scss'
 })
-export class Login {
+export class AdminLogin {
+
   loginForm!: FormGroup;
 
   hide = true;
@@ -52,7 +53,7 @@ export class Login {
           const role = tokenPayload.role;
           const userId = tokenPayload.userId;
           localStorage.setItem('userId', JSON.stringify(res.userId));
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/admin/dashboard']); 
         },
         error: (error) => {
           console.error('Login Error:', error);
@@ -76,4 +77,5 @@ export class Login {
       console.log('Form is invalid');
     }
   }
+
 }

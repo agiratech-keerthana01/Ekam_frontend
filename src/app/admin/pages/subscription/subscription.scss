@@ -1,0 +1,29 @@
+.content-area {
+    margin-left: 280px;
+    margin-top: -898px;
+}
+
+.main {
+    padding: 8px;
+    display: flex;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+
+.add-btn {
+    border: 2px solid #FF7E00; /* Orange accent color */
+    background-color: #fff;
+      color: black;
+      border-radius: 30px;
+      padding: 0px 4px;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #FF7E00; /* Darker shade on hover */
+      }
+  }
+

@@ -1,12 +1,13 @@
-<div class="form-section">
-    <div class="form-elements">
-    <h2>Add Plans</h2>
-
-    <form [formGroup]="addPlanForm" (ngSubmit)="onSubmit()">
+<div class="main-div">
+  <div>
+    <h2 mat-dialog-title>Edit Plan</h2>
+  </div>
+  <mat-dialog-content class="form-section">
+    <form [formGroup]="editPlanForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput formControlName="name" />
+          <input matInput formControlName="name" [disabled]="true" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -21,13 +22,9 @@
           <input matInput formControlName="maxHires" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline">
           <mat-label>Job Slots</mat-label>
-          <input
-            matInput
-            formControlName="jobSlots"
-            placeholder="Enter job slots"
-          />
+          <input matInput formControlName="jobSlots" />
         </mat-form-field>
       </div>
 
@@ -37,22 +34,16 @@
           <input matInput formControlName="cvViews" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Search results</mat-label>
-          <input
-            matInput
-            formControlName="searchResults"
-            type="tel"
-            placeholder="Enter search results"
-          />
+        <mat-form-field appearance="outline">
+          <mat-label>Search Results</mat-label>
+          <input matInput formControlName="searchResults" />
         </mat-form-field>
       </div>
-
-
-
-      <button mat-flat-button color="accent" type="submit" class="submit-btn">
-        Add Plan
-      </button>
     </form>
-    </div>
-  </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</div>

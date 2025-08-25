@@ -1,183 +1,3 @@
-// import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatSelectModule } from '@angular/material/select';
-// import { AuthService } from '../../services/auth.service';
-// import { CommonModule } from '@angular/common';
-// import { ActivatedRoute, RouterModule } from '@angular/router';
-// import { MatSnackBar } from '@angular/material/snack-bar';
-// import { MatDialog } from '@angular/material/dialog';
-// import { OtpDialog } from '../otp-dialog/otp-dialog';
-// import { PasswordDialog } from '../password-dialog/password-dialog';
-
-// @Component({
-//   selector: 'app-login',
-//   imports: [
-//     CommonModule,
-//     MatIconModule,
-//     MatFormFieldModule,
-//     ReactiveFormsModule,
-//     MatSelectModule,
-//     RouterModule
-//   ],
-//   templateUrl: './login.html',
-//   styleUrl: './login.scss'
-// })
-// export class Login {
-//   mode: 'login' | 'register' = 'login';
-//   role: 'candidate' | 'employer' = 'candidate';
-
-//   loginForm!: FormGroup;
-//   registerForm!: FormGroup;
-//   hide = true;
-
-//   constructor(
-//     private fb: FormBuilder,
-//     private auth: AuthService,
-//     private route: ActivatedRoute,
-//     private snackBar: MatSnackBar,
-//     private dialog: MatDialog
-//   ) {}
-
-//   ngOnInit(): void {
-//     // get role and mode from route params
-//     this.route.paramMap.subscribe(params => {
-//       this.role = (params.get('role') as 'candidate' | 'employer') || 'candidate';
-//       this.mode = (params.get('mode') as 'login' | 'register') || 'login';
-//     });
-
-//     // login form
-//     this.loginForm = this.fb.group({
-//       email: ['', [Validators.required, Validators.email]],
-//       password: ['', Validators.required],
-//     });
-
-//     // register form
-//     this.registerForm = this.fb.group({
-//       firstName: [''],
-//       lastName: [''],
-//       email: ['', [Validators.required, Validators.email]],
-//       mobileNumber: ['', Validators.required],
-//       service: [''],              // candidate only
-//       serviceStatus: [''],        // candidate only
-//       rank: [''],                 // candidate only
-//       branch: [''],               // candidate only
-//       hasCorporateExperience: [false],
-//       companyName: [''],          // employer only
-//       hrName: [''],               // employer only
-//     });
-//   }
-
-//     togglePasswordVisibility(event: Event): void {
-//     event.stopPropagation(); // Prevent default button behavior
-//     this.hide = !this.hide;
-//   }
-
-//   getOtp() {
-//   const emailValue = this.registerForm.get('email')?.value;
-
-//   if (!emailValue) {
-//     this.snackBar.open('Please enter email before requesting OTP', 'Close', { duration: 3000 });
-//     return;
-//   }
-
-//   this.auth.otpVerify(payload).subscribe({
-//     next: () => {
-//       console.log('OTP sent to:', emailValue);
-
-//       const dialogRef = this.dialog.open(OtpDialog, {
-//         width: '400px',
-//         data: { email: emailValue, role: this.role },
-//       });
-
-//       dialogRef.afterClosed().subscribe((otp) => {
-//         if (otp) {
-//           this.auth.otpVerify({ email: emailValue, otpCode: otp }).subscribe({
-//             next: () => {
-//               console.log('OTP verified');
-
-//               // 👉 Open password dialog
-//               const passDialog = this.dialog.open(PasswordDialog, {
-//                 width: '400px',
-//               });
-
-//               passDialog.afterClosed().subscribe((password) => {
-//                 if (password) {
-//                   const payload = {
-//                     ...this.registerForm.value,
-//                     password,
-//                     role: this.role
-//                   };
-
-//                   if (this.role === 'candidate') {
-//                     this.auth.registerCandidate(payload).subscribe({
-//                       next: () => this.snackBar.open('Candidate registered!', 'Close', { duration: 3000 }),
-//                       error: () => this.snackBar.open('Candidate registration failed!', 'Close', { duration: 3000 }),
-//                     });
-//                   } else {
-//                     this.auth.registerEmployer(payload).subscribe({
-//                       next: () => this.snackBar.open('Employer registered!', 'Close', { duration: 3000 }),
-//                       error: () => this.snackBar.open('Employer registration failed!', 'Close', { duration: 3000 }),
-//                     });
-//                   }
-//                 }
-//               });
-//             },
-//             error: () => this.snackBar.open('Invalid or expired OTP.', 'Close', { duration: 3000 }),
-//           });
-//         }
-//       });
-//     },
-//     error: () => this.snackBar.open('Error sending OTP. Try again.', 'Close', { duration: 3000 }),
-//   });
-// }
-
-//   /** --- Submit Handler --- */
-//   onSubmit(): void {
-//     if (this.mode === 'login' && this.loginForm.valid) {
-//       console.log(`${this.role} login data:`, this.loginForm.value);
-//       // you can call this.auth.loginCandidate / loginEmployer if APIs exist
-//     } else if (this.mode === 'register' && this.registerForm.valid) {
-//       console.log(`${this.role} register data:`, this.registerForm.value);
-
-//       // Example: after OTP verification, save final registration
-//       if (this.role === 'candidate') {
-//         this.auth.saveCandidate(this.registerForm.value).subscribe({
-//           next: () => {
-//             this.snackBar.open('Candidate registered successfully!', 'Close', {
-//               duration: 3000,
-//               panelClass: ['snackbar-success'],
-//             });
-//           },
-//           error: () => {
-//             this.snackBar.open('Candidate registration failed!', 'Close', {
-//               duration: 3000,
-//               panelClass: ['snackbar-error'],
-//             });
-//           },
-//         });
-//       } else {
-//         this.auth.saveEmployer(this.registerForm.value).subscribe({
-//           next: () => {
-//             this.snackBar.open('Employer registered successfully!', 'Close', {
-//               duration: 3000,
-//               panelClass: ['snackbar-success'],
-//             });
-//           },
-//           error: () => {
-//             this.snackBar.open('Employer registration failed!', 'Close', {
-//               duration: 3000,
-//               panelClass: ['snackbar-error'],
-//             });
-//           },
-//         });
-//       }
-//     }
-//   }
-
-// }
-
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -377,7 +197,7 @@ export class Login {
     } else {
       this.auth.registerEmployer(payload).subscribe({
         next: (response) => {
-          this.isLoading = false; 
+          this.isLoading = false;
           if (response && response.userId) {
             //success only if userId exists
             this.snackBar.open(
@@ -405,14 +225,14 @@ export class Login {
           }
         },
         error: () => {
-        this.isLoading = false;
-        this.snackBar.open('Employer registration failed!', 'Close', {
-          duration: 3000,
-          panelClass: ['snackbar-error'],
-          verticalPosition: 'top',
-        });
-      },
-    });
+          this.isLoading = false;
+          this.snackBar.open('Employer registration failed!', 'Close', {
+            duration: 3000,
+            panelClass: ['snackbar-error'],
+            verticalPosition: 'top',
+          });
+        },
+      });
     }
   }
 
@@ -505,6 +325,7 @@ export class Login {
     });
   }
 
+
   /** --- Login --- */
   onSubmit(): void {
     if (this.mode === 'login' && this.loginForm.valid) {
@@ -517,6 +338,26 @@ export class Login {
             verticalPosition: 'top',
           });
           console.log('Login response:', res);
+
+          // Save token if available
+          if (res?.jwtToken) {
+            localStorage.setItem('token', res.jwtToken);
+          } else {
+            console.error('No token received from backend:', res);
+          }
+
+          if (res?.userId) {
+            localStorage.setItem('userId', res.userId.toString());
+          } else {
+            console.error('No userId received from backend:', res);
+          }
+
+          // Navigate based on role
+          if (this.role === 'candidate') {
+            this.router.navigate(['/candidate/home']);
+          } else if (this.role === 'employer') {
+            this.router.navigate(['/employer/home']);
+          }
         },
         error: () => {
           this.snackBar.open('Login failed!', 'Close', {

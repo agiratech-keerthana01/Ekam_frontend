@@ -4,18 +4,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { Admin } from './admin';
 import { AddPlan } from './components/add-plan/add-plan';
 import { Dashboard } from './components/dashboard/dashboard';
-import { Login } from './components/login/login';
+import { Subscription } from './pages/subscription/subscription';
+
 
 const routes: Routes = [
 
-  { path: 'login', component: Login },
+  // { path: 'login', component: Login },  
+
   { path: '', component: Admin,
     children: [
       { path: 'dashboard', component: Dashboard },
       { path: 'add-plan', component: AddPlan },
+      { path: 'subscriptions', component: Subscription },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]
-   }
+   },
+   
 ];
 
 @NgModule({
