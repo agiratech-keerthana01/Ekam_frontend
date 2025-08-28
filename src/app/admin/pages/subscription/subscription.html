@@ -1,0 +1,23 @@
+<div class="content-area">
+
+    <mat-toolbar class="nav">
+        <div class="text">
+            <h2>Subscription Plans</h2>
+        </div>
+        <div class="add-btn">
+            <button mat-button class="nav-button" (click)="addPlan()">Add Plan</button>
+        </div>
+    </mat-toolbar>
+
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+ 
+
+
+
+
+  <div *ngFor="let p of plans">
+    <app-plan-card [plan]="p" (editPlan)="onEditPlan($event)"></app-plan-card>
+  </div>
+</div>

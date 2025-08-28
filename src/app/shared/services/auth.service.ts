@@ -12,7 +12,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
-    console.log('Loaded token:', token);
   }
 
   /** --- Login --- */

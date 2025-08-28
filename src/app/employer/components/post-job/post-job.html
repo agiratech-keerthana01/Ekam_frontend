@@ -1,0 +1,228 @@
+<!-- <div class="main-div">
+  <form class="form-section" [formGroup]="postJobForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Category</mat-label>
+        <mat-select formControlName="categories">
+          <mat-option *ngFor="let c of categories" [value]="c.category">
+            {{ c.category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Salary Range</mat-label>
+        <input matInput formControlName="salaryRange" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Required Experience</mat-label>
+        <input matInput formControlName="experience" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Type</mat-label>
+        <mat-select formControlName="jobTypes">
+          <mat-option *ngFor="let type of jobTypes" [value]="type.id">
+            {{ type.value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Apply Before</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="applyBefore"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <h3>Job Preferences</h3>
+    <hr />
+    <div class="form-below">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="locations">
+          <mat-option *ngFor="let l of locations" [value]="l.location">
+            {{ l.location }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Description</mat-label>
+        <input matInput formControlName="jobDescription" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Roles & Responsibities</mat-label>
+        <input matInput formControlName="rolesResponsibity" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Required Qualification</mat-label>
+        <input matInput formControlName="qualification" />
+      </mat-form-field>
+
+      <div formArrayName="skills" class="full-width">
+        <mat-label>Skills & Competencies</mat-label>
+          <div>
+            <mat-checkbox *ngFor="let skill of skillsList; let i = index" [formControlName]="i">
+              {{ skill }}
+            </mat-checkbox>
+          </div>
+      </div>
+
+      <div formArrayName="benefits" class="full-width">
+        <mat-label>Benefits & Perks</mat-label>
+          <div>
+            <mat-checkbox *ngFor="let benefit of benefitsList; let i = index" [formControlName]="i">
+              {{ benefit }}
+            </mat-checkbox>
+          </div>
+      </div>
+
+      <div formArrayName="documentsRequired" class="full-width">
+        <mat-label>Documents Required</mat-label>
+          <div>
+            <mat-checkbox *ngFor="let doc of documentsList; let i = index" [formControlName]="i">
+              {{ doc }}
+            </mat-checkbox>
+          </div>
+      </div>
+      
+    <button mat-flat-button type="submit" class="submit-btn">Post Job</button>
+  </form>
+</div> -->
+
+<div class="main-div">
+  <form class="form-section" [formGroup]="postJobForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Category</mat-label>
+        <mat-select formControlName="jobCategoryId">
+          <mat-option *ngFor="let c of jobCategoryId" [value]="c.id">
+            {{ c.category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Salary Range</mat-label>
+        <input matInput formControlName="salaryRange" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Required Experience</mat-label>
+        <input matInput formControlName="experience" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Type</mat-label>
+        <mat-select formControlName="jobTypeId">
+          <mat-option *ngFor="let type of jobTypeId" [value]="type.id">
+            {{ type.value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Apply Before</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="applyBefore"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <h3>Job Preferences</h3>
+    <hr />
+
+    <div class="form-below">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="locationId">
+          <mat-option *ngFor="let l of locationId" [value]="l.id">
+            {{ l.location }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Description</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Roles & Responsibities</mat-label>
+        <input matInput formControlName="rolesResponsibilities" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Required Qualification</mat-label>
+        <input matInput formControlName="requiredQualification" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Skills & Competencies</mat-label>
+        <mat-select formControlName="jobSkillIds" multiple>
+          <mat-option *ngFor="let s of jobSkillIds" [value]="s.id">
+            {{ s.skill }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <hr />
+
+      <div formArrayName="benefitsPerks" class="full-width">
+        <mat-label>Benefits & Perks</mat-label>
+        <div>
+          <mat-checkbox
+            *ngFor="let benefit of benefitsList; let i = index"
+            [formControlName]="i"
+          >
+            {{ benefit }}
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <hr />
+
+      <div formArrayName="documentsRequired" class="full-width">
+        <mat-label>Documents Required</mat-label>
+        <div>
+          <mat-checkbox
+            *ngFor="let doc of documentsList; let i = index"
+            [formControlName]="i"
+          >
+            {{ doc }}
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <button mat-flat-button type="submit" class="submit-btn">Post Job</button>
+  </form>
+</div>

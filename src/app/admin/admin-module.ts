@@ -8,10 +8,26 @@ import { RouterOutlet } from '@angular/router';
 import { Admin } from './admin';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { AddPlan } from './components/add-plan/add-plan';
+import { Dashboard } from './components/dashboard/dashboard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { AdminLogin } from './components/admin-login/admin-login';
+import { PlanCard } from './components/plan-card/plan-card';
+import { Subscription } from './pages/subscription/subscription';
+import { EditPlanDialog } from './components/edit-plan-dialog/edit-plan-dialog';
 
 
 @NgModule({
-  declarations: [Admin, SideNav],
+  declarations: [Admin, SideNav, AddPlan, Dashboard, AdminLogin, PlanCard, Subscription, EditPlanDialog],
   imports: [
     CommonModule,
     RouterOutlet,
@@ -19,7 +35,18 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatCardModule,
     
   ],
   exports: [SideNav]

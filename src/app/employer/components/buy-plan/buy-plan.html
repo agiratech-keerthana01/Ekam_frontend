@@ -1,0 +1,223 @@
+<div class="upgrade-container">
+  <!-- Left side: Payment options -->
+  <div class="payment-section">
+    <!-- Toggle buttons -->
+    <div class="tab-buttons">
+      <button
+        mat-button
+        [ngClass]="{ active: selectedTab === 'card' }"
+        (click)="selectedTab = 'card'"
+      >
+        ● Credit Card
+      </button>
+      <button
+        mat-button
+        [ngClass]="{ active: selectedTab === 'netbanking' }"
+        (click)="selectedTab = 'netbanking'"
+      >
+        ● Net Banking
+      </button>
+    </div>
+    <hr />
+
+    <!-- Credit Card Section -->
+    <div *ngIf="selectedTab === 'card'" class="card-section">
+      <!-- <mat-radio-group [(ngModel)]="selectedCard">
+        <mat-card
+          *ngFor="let card of savedCards"
+          class="saved-card"
+          [ngClass]="{ selected: selectedCard === card.number }"
+        >
+          <mat-radio-button [value]="card.number">
+            <img src="assets/visa.png" alt="Visa" width="30" />
+            Visa Ending in {{ card.last4 }}
+            <small>Expires {{ card.expiry }}</small>
+          </mat-radio-button>
+        </mat-card>
+      </mat-radio-group>
+
+      <div class="or-divider">Or</div>
+
+      <mat-card class="add-card">
+        <h4>Add New Card</h4>
+        <hr />
+        <div class="card-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Card number</mat-label>
+            <input matInput placeholder="Enter card number" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Name on card</mat-label>
+            <input matInput placeholder="Enter name" />
+          </mat-form-field>
+        </div>
+
+        <div class="card-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Valid thru</mat-label>
+            <input matInput placeholder="MM/YYYY" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CVV</mat-label>
+            <input matInput type="password" />
+          </mat-form-field>
+        </div>
+
+        <mat-checkbox>Save card as per RBI guideline</mat-checkbox>
+        <button mat-stroked-button class="save-btn">Save card</button>
+      </mat-card> -->
+
+      <!-- If saved cards exist -->
+      <ng-container *ngIf="savedCards.length > 0">
+        <mat-radio-group [(ngModel)]="selectedCard">
+          <mat-card
+            *ngFor="let card of savedCards"
+            class="saved-card"
+            [ngClass]="{ selected: selectedCard === card.number }"
+          >
+            <mat-radio-button [value]="card.number">
+              <img src="assets/visa.png" alt="Visa" width="30" />
+              Visa Ending in {{ card.last4 }}
+              <small>Expires {{ card.expiry }}</small>
+            </mat-radio-button>
+          </mat-card>
+        </mat-radio-group>
+
+        <div class="or-divider">Or</div>
+
+        <!-- Add Card Form -->
+        <mat-card class="add-card">
+          <h4>Add New Card</h4>
+          <hr />
+          <div class="card-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Card number</mat-label>
+              <input matInput placeholder="Enter card number" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Name on card</mat-label>
+              <input matInput placeholder="Enter name" />
+            </mat-form-field>
+          </div>
+
+          <div class="card-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Valid thru</mat-label>
+              <input matInput placeholder="MM/YYYY" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>CVV</mat-label>
+              <input matInput type="password" />
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox>Save card as per RBI guideline</mat-checkbox>
+          <button mat-stroked-button class="save-btn">Save card</button>
+        </mat-card>
+      </ng-container>
+
+      <!-- If no saved cards -->
+      <ng-container *ngIf="savedCards.length === 0">
+        <mat-card class="add-card">
+          <h4>Add New Card</h4>
+          <hr />
+          <div class="card-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Card number</mat-label>
+              <input matInput placeholder="Enter card number" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Name on card</mat-label>
+              <input matInput placeholder="Enter name" />
+            </mat-form-field>
+          </div>
+
+          <div class="card-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Valid thru</mat-label>
+              <input matInput placeholder="MM/YYYY" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>CVV</mat-label>
+              <input matInput type="password" />
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox>Save card as per RBI guideline</mat-checkbox>
+          <button mat-stroked-button class="save-btn">Save card</button>
+        </mat-card>
+      </ng-container>
+    </div>
+
+    <!-- Net Banking Section -->
+    <div *ngIf="selectedTab === 'netbanking'" class="netbanking-section">
+      <h4>Popular banks</h4>
+      <div class="banks-grid">
+        <mat-radio-group [(ngModel)]="selectedBank">
+          <mat-radio-button *ngFor="let bank of banks" [value]="bank">{{
+            bank
+          }}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="or-divider">Or</div>
+
+      <div class="other-bank">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Other bank</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let bank of otherBanks" [value]="bank">{{
+              bank
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <small>We will check your bank website to authorize payment.</small>
+        <br />
+        <button mat-stroked-button class="save-btn" (click)="onProceed()">
+          Proceed
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Right side: Subscription Summary -->
+  <div class="summary-section">
+    <mat-card>
+      <h3>Subscription Summary</h3>
+      <br />
+      <div class="summary-row">
+        <span>Plan Name</span>
+        <span>{{ plan.name }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Plan Price</span>
+        <span>₹{{ plan.price | number : "1.0-0" }}/-</span>
+      </div>
+      <div class="summary-row">
+        <span>Tax Value (5%)</span>
+        <span>₹{{ taxValue | number : "1.0-0" }}/-</span>
+      </div>
+      <hr />
+      <div class="summary-row">
+        <span>Amount</span>
+        <span>₹{{ (plan.price + taxValue) | number:'1.0-0' }}/-</span>
+      </div>
+      <div class="summary-row">
+        <span>Processing Fee</span>
+        <span>FREE</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total Amount</span>
+        <span>₹{{ totalAmount | number : "1.0-0" }}/-</span>
+      </div>
+      <button mat-flat-button class="pay-btn" (click)="onProceed()">
+        Pay now
+      </button>
+    </mat-card>
+  </div>
+</div>

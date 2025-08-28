@@ -1,20 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterOutlet } from '@angular/router';
 
-
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-navbar-component',
   imports: [CommonModule, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, RouterOutlet],
-  templateUrl: './navbar.html',
-  styleUrls: ['./navbar.scss']
+  templateUrl: './navbar-component.html',
+  styleUrl: './navbar-component.scss'
 })
-export class navbar {
+export class NavbarComponent {
+
   mainButtonIcon = 'assets/Ic_chevron-down.png';
 
   candidateLinks = [
@@ -36,16 +35,17 @@ export class navbar {
 
 
   navigateToDropDown(path: string){
-    this.router.navigate([`/${path}`]);
+    this.router.navigate([path]);
   }
 
   navigateTo(role: 'candidate' | 'employer', mode: 'login' | 'register') {
-  this.router.navigate([`/${role}/${mode}`]);
+  this.router.navigate([`auth/${role}/${mode}`]);
 }
 
   adminLoginPage(): void {
     this.router.navigate(['/AdminLogin']);
   }
+
 
 
 }

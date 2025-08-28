@@ -1,0 +1,95 @@
+<!-- <mat-card class="plan-card" *ngFor="let plan of plans">
+  <div class="plan-header">
+    <div class="active">
+    <h2 class="plan-title">{{ plan.name }}</h2>
+    <span class="status-badge" [ngClass]="plan.isActive ? 'active' : 'inactive'">
+      {{ plan.isActive ? 'Active' : 'Inactive' }}
+    </span>
+    </div>
+
+    <button mat-flat-button color="accent" class="submit-btn" (click)="buy(plan.id)">
+        Buy Plan
+      </button>
+   
+  </div>
+
+  <div class="plan-price">
+    <span class="currency">₹</span>
+    <span class="amount">{{ plan.price | number }}</span>
+    <span class="duration">per year</span>
+  </div>
+
+  <p class="plan-description">
+    Lorem ipsum dolor sit amet, consectetur
+  </p>
+
+  <div class="plan-dates">
+    <div>
+      <small>Plan created on</small>
+      <p>{{ plan.createdAt | date:'short' }}</p>
+    </div>
+  </div>
+
+  <div class="plan-includes">
+    <h4>Includes:</h4>
+    <ul>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.maxHires }} hires/year</li>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.jobSlots }} job slots</li>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.searchResults }} search results</li>
+      <li><mat-icon>check_circle</mat-icon> {{ plan.cvViews }} CV views</li>
+    </ul>
+  </div>
+</mat-card> -->
+
+
+
+ <p>hi i am view plans page</p>
+
+ <div class="plans-container" *ngIf="plans && plans.length > 0; else noPlans">
+  <mat-card class="plan-card" *ngFor="let plan of plans">
+    <div class="plan-header">
+      <div class="active">
+        <h2 class="plan-title">{{ plan.name }}</h2>
+        <span class="status-badge" [ngClass]="plan.isActive ? 'active' : 'inactive'">
+          {{ plan.isActive ? 'Active' : 'Inactive' }}
+        </span>
+      </div>
+
+      <button mat-flat-button class="submit-btn" (click)="buy(plan)">
+        Buy Plan
+      </button>
+    </div>
+
+    <div class="plan-price">
+      <span class="currency">₹</span>
+      <span class="amount">{{ plan.price | number }}</span>
+      <span class="duration">per year</span>
+    </div>
+
+    <p class="plan-description">
+      Lorem ipsum dolor sit amet, consectetur
+    </p>
+
+    <div class="plan-dates">
+      <div>
+        <small>Plan created on</small>
+        <p>{{ plan.createdAt | date: 'short' }}</p>
+      </div>
+    </div>
+
+    <div class="plan-includes">
+      <h4>Includes:</h4>
+      <ul>
+        <li><mat-icon color="primary">check_circle</mat-icon> {{ plan.maxHires }} hires/year</li>
+        <li><mat-icon color="primary">check_circle</mat-icon> {{ plan.jobSlots }} job slots</li>
+        <li><mat-icon color="primary">check_circle</mat-icon> {{ plan.searchResults }} search results</li>
+        <li><mat-icon color="primary">check_circle</mat-icon> {{ plan.cvViews }} CV views</li>
+      </ul>
+    </div>
+  </mat-card>
+</div>
+
+<ng-template #noPlans>
+  <p>No plans available.</p>
+</ng-template>
+

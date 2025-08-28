@@ -1,0 +1,49 @@
+<div class="main-div">
+  <div>
+    <h2 mat-dialog-title>Edit Plan</h2>
+  </div>
+  <mat-dialog-content class="form-section">
+    <form [formGroup]="editPlanForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" [disabled]="true" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Hires</mat-label>
+          <input matInput formControlName="maxHires" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Job Slots</mat-label>
+          <input matInput formControlName="jobSlots" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>CV Views</mat-label>
+          <input matInput formControlName="cvViews" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Search Results</mat-label>
+          <input matInput formControlName="searchResults" />
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</div>

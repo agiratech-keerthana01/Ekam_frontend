@@ -5,25 +5,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, EMPTY, throwError } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-
   const token = localStorage.getItem('token');
   const router = inject(Router);
   const snackBar = inject(MatSnackBar);
 
-
   // Skip adding token for login or register requests
-  if (req.url.endsWith('/login') || req.url.endsWith('/register')) {
+  // if (req.url.endsWith('/login') || req.url.endsWith('/register')) {
+  //   return next(req);
+  // }
+
+  // const cloned = req.clone({
+  //   setHeaders: {
+  //     Authorization: `Bearer ${token}`
+  //   }
+  // });
+
+  if (
+    req.url.includes('/login') ||
+    req.url.includes('/register') ||
+    req.url.includes('/otp') ||
+    req.url.includes('/setupPassword')
+  ) {
     return next(req);
   }
 
-  const cloned = req.clone({
-    setHeaders: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  const authReq = token
+    ? req.clone({
+        setHeaders: { Authorization: `Bearer ${token}` },
+      })
+    : req;
 
-
-  return next(cloned).pipe(
+  return next(authReq).pipe(
     catchError((error: any) => {
       if (error.status === 500 && error.error?.message?.includes('expired')) {
         snackBar.open('Session expired. Please login again.', 'Close', {
@@ -39,10 +51,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           verticalPosition: 'top',
         });
         router.navigate(['/login']);
-        return EMPTY; 
+        return EMPTY;
       }
       return throwError(() => error);
     })
-  )
-
+  );
 };

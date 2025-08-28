@@ -1,0 +1,124 @@
+.upgrade-container {
+  display: flex;
+  gap: 4rem;
+  padding: 4rem;
+}
+
+
+.payment-section {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.summary-section {
+    margin-top: 50px;
+  flex: 0.5;
+   background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+// padding: 30px;
+//  border: 0.5px solid #ccc;
+//     border-radius: 6px;
+    margin-bottom: 120px;
+
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  button {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .active {
+    background: #FF7E00;
+    color: #fff;
+  }
+}
+
+.add-card {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+.saved-card {
+  width: 700px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &.selected {
+    border: 2px solid #FF7E00;
+    background-color: #fff8f0; // optional highlight
+  }
+}
+
+
+.or-divider {
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.card-row {
+  display: flex;
+  gap: 1rem;
+  width: 700px;
+}
+
+.card-row mat-form-field {
+  flex: 1;            // make both take equal space
+  min-width: 150px;   // optional, prevents shrinking too small
+}
+
+.save-btn {
+    background-color: #FF7E00;
+    max-width: 400px;
+    border-radius: 18px;
+    border: 1px solid #FF7E00;
+}
+
+
+.banks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.summary-row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
+.total {
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+.pay-btn {
+  width: 100%;
+  margin-top: 1rem;
+  background: #FF7E00!important;
+  color: white !important;
+  border-radius: 18px;
+}
+
+.other-bank {
+    display: flex;
+}
