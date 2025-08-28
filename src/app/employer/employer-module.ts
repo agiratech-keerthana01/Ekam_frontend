@@ -21,11 +21,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
 import { PostJob } from './components/post-job/post-job';
+import { ViewPlan } from './components/view-plan/view-plan';
+import { BuyPlan } from './components/buy-plan/buy-plan';
 
 
 @NgModule({
-  declarations: [Employer, Home, PostJob],
+  declarations: [Employer, Home, PostJob, ViewPlan, BuyPlan],
   imports: [
     CommonModule,
     RouterOutlet,
@@ -47,6 +50,7 @@ import { PostJob } from './components/post-job/post-job';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule, 
 
   ]
 })

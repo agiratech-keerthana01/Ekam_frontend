@@ -14,10 +14,10 @@ export class PostJob {
 
   postJobForm!: FormGroup;
 
-  categories: any[] = [];
-  locations: any[] = [];
-  jobTypes: any[] = [];
-  skills: any[] = [];
+  jobCategoryId: any[] = [];
+  locationId: any[] = [];
+  jobTypeId: any[] = [];
+  jobSkillIds: any[] = [];
   benefitsList = ['Health Insurance', 'Work From Home', 'Bonus', 'Free Food'];
   documentsList = ['Resume', 'ID Proof', 'Certificates', 'Experience Letter'];
 
@@ -32,42 +32,42 @@ export class PostJob {
 
 
     this.employerService.getCategory().subscribe((data) => {
-      this.categories = data;
+      this.jobCategoryId = data;
     });
 
     this.employerService.getLocations().subscribe((data) => {
-      this.locations = data;
+      this.locationId = data;
     });
 
     this.employerService.getJobType().subscribe((data) => {
-      this.jobTypes = data;
+      this.jobTypeId = data;
     });
 
     this.employerService.getSkills().subscribe((data) => {
-      this.skills = data;
+      this.jobSkillIds = data;
     })
 
 
     this.postJobForm = this.fb.group({
       title: ['', Validators.required],
-      categories: ['', Validators.required],
+      jobCategoryId: ['', Validators.required],
       salaryRange: ['', Validators.required],
       experience: ['', Validators.required],
-      jobTypes: ['', Validators.required],
+      jobTypeId: ['', Validators.required],
       applyBefore: ['', Validators.required],
-      locations: ['', Validators.required],
-      jobDescription: ['', Validators.required],
-      rolesResponsibity: ['', Validators.required],
-      qualification: ['', Validators.required],
-      skills: ['', Validators.required],
-      benefits: this.fb.array(this.benefitsList.map(() => new FormControl(false))),
+      locationId: ['', Validators.required],
+      description: ['', Validators.required],
+      rolesResponsibilities: ['', Validators.required],
+      requiredQualification: ['', Validators.required],
+      jobSkillIds: [[], Validators.required],
+      benefitsPerks: this.fb.array(this.benefitsList.map(() => new FormControl(false))),
       documentsRequired: this.fb.array(this.documentsList.map(() => new FormControl(false)))
 
     })
   }
 
-  get benefits(): FormArray {
-    return this.postJobForm.get('benefits') as FormArray;
+  get benefitsPerks(): FormArray {
+    return this.postJobForm.get('benefitsPerks') as FormArray;
   }
   get documentsRequired(): FormArray {
     return this.postJobForm.get('documentsRequired') as FormArray;
@@ -89,7 +89,7 @@ export class PostJob {
       const userId = localStorage.getItem('userId');
       const payload = {
         ...this.postJobForm.value,
-        benefits: this.getSelectedValues('benefits', this.benefitsList).join(","),
+        benefitsPerks: this.getSelectedValues('benefitsPerks', this.benefitsList).join(","),
         documentsRequired: this.getSelectedValues('documentsRequired', this.documentsList).join(","),
         userId: userId ? Number(userId) : null
     };
@@ -106,7 +106,7 @@ export class PostJob {
           console.log('Login response:', res);
         },
         error: () => {
-          this.snackBar.open('Could not add Subscription', 'Close', {
+          this.snackBar.open('Could not add Job', 'Close', {
             duration: 3000,
             panelClass: ['snackbar-error'],
             verticalPosition: 'top',

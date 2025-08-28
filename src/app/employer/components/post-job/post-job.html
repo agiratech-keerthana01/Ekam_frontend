@@ -116,8 +116,8 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Job Category</mat-label>
-        <mat-select formControlName="categories">
-          <mat-option *ngFor="let c of categories" [value]="c.id">
+        <mat-select formControlName="jobCategoryId">
+          <mat-option *ngFor="let c of jobCategoryId" [value]="c.id">
             {{ c.category }}
           </mat-option>
         </mat-select>
@@ -137,8 +137,8 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Job Type</mat-label>
-        <mat-select formControlName="jobTypes">
-          <mat-option *ngFor="let type of jobTypes" [value]="type.id">
+        <mat-select formControlName="jobTypeId">
+          <mat-option *ngFor="let type of jobTypeId" [value]="type.id">
             {{ type.value }}
           </mat-option>
         </mat-select>
@@ -162,8 +162,8 @@
     <div class="form-below">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Location</mat-label>
-        <mat-select formControlName="locations">
-          <mat-option *ngFor="let l of locations" [value]="l.id">
+        <mat-select formControlName="locationId">
+          <mat-option *ngFor="let l of locationId" [value]="l.id">
             {{ l.location }}
           </mat-option>
         </mat-select>
@@ -171,23 +171,23 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Job Description</mat-label>
-        <input matInput formControlName="jobDescription" />
+        <input matInput formControlName="description" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Roles & Responsibities</mat-label>
-        <input matInput formControlName="rolesResponsibity" />
+        <input matInput formControlName="rolesResponsibilities" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Required Qualification</mat-label>
-        <input matInput formControlName="qualification" />
+        <input matInput formControlName="requiredQualification" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Skills & Competencies</mat-label>
-        <mat-select formControlName="skills" multiple>
-          <mat-option *ngFor="let s of skills" [value]="s.id">
+        <mat-select formControlName="jobSkillIds" multiple>
+          <mat-option *ngFor="let s of jobSkillIds" [value]="s.id">
             {{ s.skill }}
           </mat-option>
         </mat-select>
@@ -195,7 +195,7 @@
 
       <hr />
 
-      <div formArrayName="benefits" class="full-width">
+      <div formArrayName="benefitsPerks" class="full-width">
         <mat-label>Benefits & Perks</mat-label>
         <div>
           <mat-checkbox

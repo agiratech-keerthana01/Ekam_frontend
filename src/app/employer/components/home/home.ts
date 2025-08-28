@@ -13,4 +13,8 @@ export class Home {
   addJob() {
     this.router.navigate(['/employer/post-job']);
   }
+
+  viewPlan() {
+    this.router.navigate(['/employer/view-plans'])
+  }
 }
